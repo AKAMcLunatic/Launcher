@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Manifest version="3027">
+<Manifest version="3028">
   <CheckInterval>3800</CheckInterval>
   <RemoteConfigUri>https://lafkomods.ru/update/update.xml</RemoteConfigUri>
   <SecurityToken>D68EF3A7-E787-4CC4-B021-878BA649B4CD</SecurityToken>

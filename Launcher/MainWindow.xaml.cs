@@ -52,6 +52,7 @@ namespace Radar_Starter
             {
                 InitializeComponent();
                 LauncherCheckVer2();
+                InitProcessJSRadar();
                 TextBoxCmd.Text += "------------------------------- Launcher Made by Lafko from https://lafkomods.ru/ -------------------------------";
                 ChangeAppStyle();
                 ChangeAppTheme();
@@ -214,7 +215,7 @@ namespace Radar_Starter
                 MessageBoxResult result = System.Windows.MessageBox.Show("\nJava error: " + ex.Message + ", Download?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    Process.Start("http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html");
+                    Process.Start("http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html");
                 }
             }
         }
@@ -598,8 +599,16 @@ namespace Radar_Starter
             Launcher_Namespace.Properties.Settings.Default.ComboBoxMap = ComboBoxMap.SelectedIndex;
             Launcher_Namespace.Properties.Settings.Default.ComboBoxFilter = SplitConnect.SelectedIndex;
             Launcher_Namespace.Properties.Settings.Default.Save();
+            Process[] processesByName = Process.GetProcessesByName("nodejsx64");
+            for (int i = 0; i < processesByName.Length; i++)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Stop JSRadar?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    processesByName[i].Kill();
+                }  
+            }
         }
-
 
         public void KillJSRadar()
         {
@@ -615,7 +624,16 @@ namespace Radar_Starter
                 System.Windows.MessageBox.Show(ex.Message);
             }
         }
-        
+
+        public void InitProcessJSRadar()
+        {
+            Process[] processesByName = Process.GetProcessesByName("nodejsx64");
+            for (int i = 0; i < processesByName.Length; i++)
+            {
+                ButtonStopRadar.Visibility = Visibility.Visible;
+            }
+        }
+
         private void MetroWindow_StateChanged_1(object sender, EventArgs e)
         {
             if (this.WindowState == WindowState.Minimized)
@@ -966,25 +984,6 @@ namespace Radar_Starter
             SplitConnect.Items.Add("PPTPFilter");
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            //No need
-            /*try
-            {
-                var path = Regex.Replace(PathToJar[ComboBoxRadar.SelectedIndex], "\"", "");
-                TextBoxAhk.Text = path;
-                using (ZipFile zip = ZipFile.Read(path))
-                {
-                    zip.UpdateFile("GameKt.class", @"\albedo");
-                    zip.Save();
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show("Inject error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }*/
-        }
-
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             settingsFlyout.IsOpen = true;
@@ -1088,6 +1087,33 @@ namespace Radar_Starter
         {
             KillJSRadar();
             ButtonStopRadar.Visibility = Visibility.Hidden;
+        }
+
+        private void ComboBoxRadar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBoxRadar.SelectedItem.ToString() == "JSRadar")
+            {
+                TextBoxGamePCIP.IsEnabled = false;
+                RadioAuto.IsEnabled = false;
+                RadioPCAP.IsEnabled = false;
+                RadioArp.IsEnabled = false;
+                RadioAuto.IsChecked = false;
+                RadioPCAP.IsChecked = false;
+                RadioArp.IsChecked = false;
+                RadioCustomIp.IsChecked = true;
+                ComboBoxMap.IsEnabled = false;
+                ComboBoxMap.SelectedIndex = -1;
+                lablRadarPCIP.Content = "ENTER LOCAL IP ADDRESS";
+            }
+            else
+            {
+                TextBoxGamePCIP.IsEnabled = true;
+                RadioAuto.IsEnabled = true;
+                RadioPCAP.IsEnabled = true;
+                RadioArp.IsEnabled = true;
+                ComboBoxMap.IsEnabled = true;
+                lablRadarPCIP.Content = "RADAR PC IP";
+            }
         }
     }
 }

@@ -32,8 +32,6 @@
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
     <Grid Margin="0,0,0,-1">
-
-
         <TabControl HorizontalAlignment="Left" Height="595" VerticalAlignment="Top" Width="627" Margin="0,0,-2,0">
             <TabItem Margin="10,0,-16,0">
                 <TabItem.HeaderTemplate>
@@ -53,13 +51,12 @@
                         <!-- Control to wrap goes here -->
                         <ComboBox x:Name="comboBoxLanInternet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="278" SelectionChanged="ComboBox_SelectionChanged" Height="26"/>
                     </Controls:Badged>
-                    <Label Content="RADAR PC IP:" HorizontalAlignment="Left" Margin="15,92,0,0" VerticalAlignment="Top" Width="91" FontWeight="Bold"/>
+                    <Label x:Name="lablRadarPCIP" Content="RADAR PC IP:" HorizontalAlignment="Left" Margin="15,92,0,0" VerticalAlignment="Top" Width="282" FontWeight="Bold"/>
                     <Controls:Badged x:Name="Badge2" Badge="{Binding BadgeValue2}" Margin="334,118,15,408">
                         <ComboBox x:Name="comboBoxLanInternet2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="272" SelectionChanged="ComboBox_SelectionChanged_1" RenderTransformOrigin="0.5,0.5"/>
                     </Controls:Badged>
                     <Label x:Name="LabelLanInternet2" Content="GAME PC IP:" HorizontalAlignment="Left" Margin="525,92,0,0" VerticalAlignment="Top" Width="81" FontWeight="Bold"/>
                     <TextBox x:Name="TextBoxCmd" HorizontalAlignment="Left" Height="253" Margin="6,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="613" TextChanged="TextBox_TextChanged" Controls:ControlsHelper.FocusBorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Background="Black" Foreground="White" />
-                    <Button Content="Inject in Albedo radar" HorizontalAlignment="Left" Margin="374,376,0,0" VerticalAlignment="Top" Width="155" Click="Button_Click_5" Height="25" Visibility="Hidden"/>
                     <RadioButton x:Name="RadioArp" Content="Arp Wi-Fi" HorizontalAlignment="Left" Margin="198,416,0,0" VerticalAlignment="Top" Checked="RadioArp_Checked" Unchecked="RadioArp_Unchecked" ToolTip="If one of PC use Wi-fi, use this." ToolTipService.ShowDuration="7000"/>
                     <RadioButton x:Name="RadioCustomIp" Content="Custom IP" HorizontalAlignment="Left" Margin="56,416,0,0" VerticalAlignment="Top" Checked="RadioCustomIp_Checked" Unchecked="RadioCustomIp_Unchecked" ToolTip="Enter IP addresses manually." ToolTipService.ShowDuration="7000" IsChecked="True"/>
                     <RadioButton x:Name="RadioPCAP" Content="Offline (PCAP)" HorizontalAlignment="Left" Margin="330,416,0,0" VerticalAlignment="Top" Checked="RadioPCAP_Checked" Unchecked="RadioPCAP_Unchecked" ToolTip="This is Offline mod (Replays)." ToolTipService.ShowDuration="7000"/>
@@ -69,7 +66,7 @@
                         <Controls:SplitButton x:Name="ComboBoxRadar"
                                   Width="137"
                                   HorizontalAlignment="Center"
-                                  HorizontalContentAlignment="Left" VerticalAlignment="Top" Height="18" Margin="0,0,0,-1">
+                                  HorizontalContentAlignment="Left" VerticalAlignment="Top" Height="18" Margin="0,0,0,-1" SelectionChanged="ComboBoxRadar_SelectionChanged">
                             <Controls:SplitButton.Icon>
                                 <iconPacks:PackIconModern Kind="RadarScreen" Height="16" Width="19" />
                             </Controls:SplitButton.Icon>
@@ -153,6 +150,6 @@
             </Grid>
         </Controls:Flyout>
         <ProgressBar x:Name="progressBar1" HorizontalAlignment="Left" Height="10" Margin="0,523,-2,0" VerticalAlignment="Top" Width="627" ValueChanged="ProgBarDownload_ValueChanged" Background="White" BorderBrush="White" Visibility="Hidden"/>
-        <Button x:Name="ButtonStopRadar" Content="Stop js radar" HorizontalAlignment="Left" Margin="521,491,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click_2" Visibility="Hidden"/>
+        <Button x:Name="ButtonStopRadar" Content="Stop js radar" HorizontalAlignment="Left" Margin="52,528,0,0" VerticalAlignment="Top" Width="222" Click="Button_Click_2" Height="37" Visibility="Hidden"/>
     </Grid>
 </Controls:MetroWindow>
