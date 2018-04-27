@@ -1,4 +1,4 @@
-# Radar-Starter !
+# Launcher !
 
 #### A simple and convenient launcher for radar paks and AHK
 ![Imgur](https://image.ibb.co/nb2ozn/2.png)
