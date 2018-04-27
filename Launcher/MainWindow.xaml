@@ -1,0 +1,158 @@
+﻿<Controls:MetroWindow x:Class="Radar_Starter.MainWindow"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        mc:Ignorable="d"
+        Title="Launcher" Height="606.455" Width="631.329" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" Closing="MetroWindow_Closing" StateChanged="MetroWindow_StateChanged_1">
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <Button Click="LaunchAppsOnGitHub" ToolTip="Launcher on GitHub">
+                <iconPacks:PackIconModern Width="22" Height="22" Kind="SocialGithubOctocat"/>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands ShowLastSeparator="True">
+            <Button ToolTip="Clear console" Click="Button_Click_7">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Width="25" Height="15" Kind="Console" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Clear console" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button ToolTip="Open settings menu" Click="Button_Click_6">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Width="25" Height="15" Kind="Settings" Spin="True" SpinDuration="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Settings" Width="47" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Grid Margin="0,0,0,-1">
+
+
+        <TabControl HorizontalAlignment="Left" Height="595" VerticalAlignment="Top" Width="627" Margin="0,0,-2,0">
+            <TabItem Margin="10,0,-16,0">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Width="27" Height="15" Kind="Radar" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Radar" Margin="3,0,-3,-2" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <Grid>
+                    <Image Margin="164,-25,159,293" Source="pubg_icon.png" Stretch="Fill"/>
+                    <TextBox x:Name="TextBoxGamePCIP" HorizontalAlignment="Left" Height="23" Margin="332,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" TextChanged="TextBox1_TextChanged" Controls:TextBoxHelper.Watermark="Enter Game PC IP" Controls:TextBoxHelper.ClearTextButton="True" Visibility="Hidden"/>
+                    <TextBox x:Name="TextBoxRadarPCIP" HorizontalAlignment="Left" Height="23" Margin="15,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" Controls:TextBoxHelper.Watermark="Enter Radar PC IP" Controls:TextBoxHelper.ClearTextButton="True" Visibility="Hidden"/>
+                    <Button x:Name="Button1" Content="START RADAR" HorizontalAlignment="Left" Margin="49,488,0,0" VerticalAlignment="Top" Width="222" Height="36" Click="Button_Click"/>
+                    <Controls:Badged x:Name="Badge1" Badge="{Binding BadgeValue}" Margin="19,118,324,408">
+                        <!-- Control to wrap goes here -->
+                        <ComboBox x:Name="comboBoxLanInternet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="278" SelectionChanged="ComboBox_SelectionChanged" Height="26"/>
+                    </Controls:Badged>
+                    <Label Content="RADAR PC IP:" HorizontalAlignment="Left" Margin="15,92,0,0" VerticalAlignment="Top" Width="91" FontWeight="Bold"/>
+                    <Controls:Badged x:Name="Badge2" Badge="{Binding BadgeValue2}" Margin="334,118,15,408">
+                        <ComboBox x:Name="comboBoxLanInternet2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="272" SelectionChanged="ComboBox_SelectionChanged_1" RenderTransformOrigin="0.5,0.5"/>
+                    </Controls:Badged>
+                    <Label x:Name="LabelLanInternet2" Content="GAME PC IP:" HorizontalAlignment="Left" Margin="525,92,0,0" VerticalAlignment="Top" Width="81" FontWeight="Bold"/>
+                    <TextBox x:Name="TextBoxCmd" HorizontalAlignment="Left" Height="253" Margin="6,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="613" TextChanged="TextBox_TextChanged" Controls:ControlsHelper.FocusBorderBrush="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Background="Black" Foreground="White" />
+                    <Button Content="Inject in Albedo radar" HorizontalAlignment="Left" Margin="374,376,0,0" VerticalAlignment="Top" Width="155" Click="Button_Click_5" Height="25" Visibility="Hidden"/>
+                    <RadioButton x:Name="RadioArp" Content="Arp Wi-Fi" HorizontalAlignment="Left" Margin="198,416,0,0" VerticalAlignment="Top" Checked="RadioArp_Checked" Unchecked="RadioArp_Unchecked" ToolTip="If one of PC use Wi-fi, use this." ToolTipService.ShowDuration="7000"/>
+                    <RadioButton x:Name="RadioCustomIp" Content="Custom IP" HorizontalAlignment="Left" Margin="56,416,0,0" VerticalAlignment="Top" Checked="RadioCustomIp_Checked" Unchecked="RadioCustomIp_Unchecked" ToolTip="Enter IP addresses manually." ToolTipService.ShowDuration="7000" IsChecked="True"/>
+                    <RadioButton x:Name="RadioPCAP" Content="Offline (PCAP)" HorizontalAlignment="Left" Margin="330,416,0,0" VerticalAlignment="Top" Checked="RadioPCAP_Checked" Unchecked="RadioPCAP_Unchecked" ToolTip="This is Offline mod (Replays)." ToolTipService.ShowDuration="7000"/>
+                    <RadioButton x:Name="RadioAuto" Content="Auto IP" HorizontalAlignment="Left" Margin="482,416,0,0" VerticalAlignment="Top" Checked="RadioAuto_Checked" Unchecked="RadioAuto_Unchecked" ToolTip="Auto detect IP addresses." ToolTipService.ShowDuration="7000"/>
+                    <Button x:Name="ButtonDorU" Content="DOWNLOAD RADAR" HorizontalAlignment="Left" Margin="323,488,0,0" VerticalAlignment="Top" Width="222" Height="36" Click="ShowProgressDialog"/>
+                    <Controls:Badged x:Name="Badge3" Badge="{Binding BadgeValue3}" Margin="374,450,110,77">
+                        <Controls:SplitButton x:Name="ComboBoxRadar"
+                                  Width="137"
+                                  HorizontalAlignment="Center"
+                                  HorizontalContentAlignment="Left" VerticalAlignment="Top" Height="18" Margin="0,0,0,-1">
+                            <Controls:SplitButton.Icon>
+                                <iconPacks:PackIconModern Kind="RadarScreen" Height="16" Width="19" />
+                            </Controls:SplitButton.Icon>
+                        </Controls:SplitButton>
+                    </Controls:Badged>
+                    <Controls:Badged x:Name="Badge4" Badge="{Binding BadgeValue4}" Margin="94,450,392,72">
+                        <Controls:SplitButton x:Name="ComboBoxMap"
+                                  Width="137"
+                                  HorizontalAlignment="Center"
+                                  HorizontalContentAlignment="Left" Margin="-1,0,-1,4">
+                            <Controls:SplitButton.Icon>
+                                <iconPacks:PackIconFontAwesome Kind="GlobeSolid" Height="16" Width="19" />
+                            </Controls:SplitButton.Icon>
+                        </Controls:SplitButton>
+                    </Controls:Badged>
+                </Grid>
+            </TabItem>
+            <TabItem Margin="19,0,-3,0">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Width="27" Height="15" Kind="Bug" VerticalAlignment ="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.533,0.4"/>
+                            <TextBlock Text="Cheats" Margin="3,0,-3,-2" Width="95" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <Grid>
+                    <Button x:Name="ButtonInject" Content="INJECT PAK" HorizontalAlignment="Left" Margin="200,430,0,0" VerticalAlignment="Top" Width="208" Height="39" Click="Button_Click_1" IsEnabled="False"/>
+                    <GroupBox Header="Paks" HorizontalAlignment="Left" Height="179" Margin="10,10,0,0" VerticalAlignment="Top" Width="601">
+                    </GroupBox>
+                    <TextBox x:Name="TextBoxPak" HorizontalAlignment="Left" Height="23" Margin="10,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="601" Controls:TextBoxHelper.Watermark="Path to 'PUBG' folder (Mouse double click on field to find path)" MouseDoubleClick="TextBoxPath_MouseDoubleClick" UndoLimit="500"/>
+                    <TextBox x:Name="TextBoxAhk" HorizontalAlignment="Left" Height="23" Margin="10,343,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="601" Controls:TextBoxHelper.Watermark="Path to 'AHK script' (Mouse double click on field to find path)" MouseDoubleClick="TextBoxAhk_MouseDoubleClick" UndoLimit="500"/>
+                    <Button Content="START AHK" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Width="185" Height="39" Click="Button_Click_3"/>
+                    <Button x:Name="ButtonPakClear" Content="CLEAR PUBG" HorizontalAlignment="Left" Margin="200,430,0,0" VerticalAlignment="Top" Width="208" Height="39" Click="Button_Click_4" Visibility="Hidden"/>
+                    <RadioButton x:Name="RadiButtonPak1" Content="No recoil 80%, Black texture, No grass, 2 color player, No smoke" HorizontalAlignment="Left" Margin="21,45,0,0" VerticalAlignment="Top" Checked="RadiButtonPak1_Checked" IsEnabled="False"/>
+                    <RadioButton x:Name="RadioButtonPak2" Content="No recoil 100%, 3 color player, No sound" HorizontalAlignment="Left" Margin="21,68,0,0" VerticalAlignment="Top" Checked="RadioButtonPak2_Checked" IsEnabled="False"/>
+                    <RadioButton x:Name="RadioButtonPak3" Content="No recoil 100%, 3 color player, No sound, Fast item pick, Fast weapon switch, Black texture, No grass" HorizontalAlignment="Left" Margin="21,91,0,0" VerticalAlignment="Top" Checked="RadioButtonPak3_Checked" IsEnabled="False"/>
+                    <Label Content="You can add your AHK script UNDETECT" HorizontalAlignment="Left" Margin="10,312,0,0" VerticalAlignment="Top" Width="236"/>
+                    <RadioButton Content="No recoil 80%, 3 color player, No sound, Fast item pick, Fast weapon switch" HorizontalAlignment="Left" Margin="21,114,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" IsEnabled="False"/>
+                    <RadioButton Content="No recoil 100%, 3 color player, No sound, Fast heal, Black texture, No grass" HorizontalAlignment="Left" Margin="21,137,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1" IsEnabled="False"/>
+                    <Label Content="Need path to PUBG folder. Example: C:\Program Files (x86)\Steam\steamapps\common\PUBG" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Width="601"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Controls:Flyout Header="Settings" Position="Right" Width="625" x:Name="settingsFlyout" Visibility="Hidden">
+            <Grid Height="458">
+                <Controls:SplitButton x:Name="SplitTheme"
+                                  Width="130"
+                                  HorizontalAlignment="Center"
+                                  HorizontalContentAlignment="Left"
+                                  Margin="485,41,10,385" SelectionChanged="Themes_SelectionChanged">
+                    <Controls:SplitButton.Icon>
+                        <iconPacks:PackIconOcticons Margin="6" Kind="Paintcan" />
+                    </Controls:SplitButton.Icon>
+                </Controls:SplitButton>
+                <Controls:SplitButton x:Name="SplitDark"
+                                  Width="130"
+                                  HorizontalAlignment="Center"
+                                  HorizontalContentAlignment="Left"
+                                  Margin="485,81,10,345" SelectionChanged="Themes_SelectionChanged2">
+                    <Controls:SplitButton.Icon>
+                        <iconPacks:PackIconMaterial Margin="6" Kind="ThemeLightDark" />
+                    </Controls:SplitButton.Icon>
+                </Controls:SplitButton>
+                <TextBox x:Name="TextBoxJson" HorizontalAlignment="Left" Height="363" Margin="10,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" Loaded="TextBoxJson_Loaded" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <Button x:Name="ButtonSaveJson" Content="Save radar settings" HorizontalAlignment="Left" Margin="10,437,0,-12" VerticalAlignment="Top" Width="270" Height="33" Click="ButtonSaveJson_Click" ToolTip="Save settings.json file." ToolTipService.ShowDuration="7000"/>
+                <Label Content="Radar local ver:" HorizontalAlignment="Left" Margin="482,122,0,0" VerticalAlignment="Top"/>
+                <Label Content="Radar last ver:" HorizontalAlignment="Left" Margin="482,148,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                <Label x:Name="RlocVer" Content="" HorizontalAlignment="Left" Margin="569,122,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="RLastVer" Content="" HorizontalAlignment="Left" Margin="569,148,0,0" VerticalAlignment="Top"/>
+                <Label Content="Radar  Settings" HorizontalAlignment="Left" Margin="10,-2,0,0" VerticalAlignment="Top" Width="270" HorizontalContentAlignment="Center" FontSize="14" Height="31" FontWeight="Bold"/>
+                <Controls:SplitButton x:Name="SplitConnect"
+                    Width="270"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Left"
+                    Margin="10,400,345,26" SelectionChanged="Connect_SelectionChanged">
+                    <Controls:SplitButton.Icon>
+                        <iconPacks:PackIconMaterial Margin="4" Kind="LanConnect" />
+                    </Controls:SplitButton.Icon>
+                </Controls:SplitButton>
+            </Grid>
+        </Controls:Flyout>
+        <ProgressBar x:Name="progressBar1" HorizontalAlignment="Left" Height="10" Margin="0,523,-2,0" VerticalAlignment="Top" Width="627" ValueChanged="ProgBarDownload_ValueChanged" Background="White" BorderBrush="White" Visibility="Hidden"/>
+        <Button x:Name="ButtonStopRadar" Content="Stop js radar" HorizontalAlignment="Left" Margin="521,491,0,0" VerticalAlignment="Top" Width="94" Click="Button_Click_2" Visibility="Hidden"/>
+    </Grid>
+</Controls:MetroWindow>
