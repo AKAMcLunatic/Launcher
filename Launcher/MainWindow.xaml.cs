@@ -992,7 +992,7 @@ namespace Radar_Starter
 
         private void LaunchAppsOnGitHub(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://github.com/Lafko/Radar-Starter/");
+            Process.Start("https://github.com/Lafko/Launcher/");
         }
 
         private async void ShowProgressDialog(object sender, RoutedEventArgs e)
